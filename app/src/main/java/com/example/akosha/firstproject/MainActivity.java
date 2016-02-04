@@ -11,8 +11,22 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
+    GameView gameView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Initialize gameView and set it as the view
+        gameView = new GameView(this);
+        setContentView(gameView);
+
+    }
+
+    /*@Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -25,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
-    }
+        });*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,4 +62,21 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Tell the gameView resume method to execute
+        gameView.resume();
+    }
+
+    // This method executes when the player quits the game
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Tell the gameView pause method to execute
+        gameView.pause();
+    }
+
 }
